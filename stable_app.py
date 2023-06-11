@@ -8,7 +8,7 @@ from ray import serve
 app = FastAPI()
 
 
-@serve.deployment(num_replicas=1, route_prefix="/", autoscaling_config={"min_replicas": 1, "max_replicas": 5},)
+@serve.deployment(route_prefix="/", autoscaling_config={"min_replicas": 1, "max_replicas": 5},)
 @serve.ingress(app)
 class APIIngress:
     def __init__(self, gpu_handle) -> None:
